@@ -7,6 +7,7 @@ String LINK =
 
 class HomeAction {
   void onClick(Rx<HomeState> state) {
+    state.value = HomeLoadingState();
     Future.delayed(
         const Duration(seconds: 2),
         () => Image(

@@ -5,11 +5,8 @@ class HomeState {
   HomeState._();
 
   factory HomeState.loading() = HomeLoadingState;
-
   factory HomeState.unload() = HomeUnloadState;
-
   factory HomeState.complete(Image image) = HomeCompleteState;
-
   factory HomeState.error(String error) = HomeErrorState;
 }
 

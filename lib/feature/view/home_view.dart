@@ -32,9 +32,6 @@ class HomeView extends StatelessWidget {
     return CenterWidget(
         child: TextButton(
             onPressed: () {
-              print(state);
-              state.value = HomeLoadingState();
-              print(state);
               action.onClick(state);
             },
             child: const Text('다시 시도')));

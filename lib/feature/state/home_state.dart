@@ -1,13 +1,39 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
+
+enum HomeEnum { loading, unload, complete, error }
+
+extension HomeEnumExtension on HomeEnum? {
+  HomeState toState(dynamic param) {
+    switch (this) {
+      case HomeEnum.loading:
+        return HomeLoadingState();
+      case HomeEnum.unload:
+        return HomeUnloadState();
+      case HomeEnum.complete:
+        return HomeCompleteState(param);
+      default:
+        return HomeErrorState(param);
+    }
+  }
+}
+
+extension HomeStateExtension on HomeState? {
+  HomeEnum get to {
+    switch (runtimeType) {
+      case HomeLoadingState:
+        return HomeEnum.loading;
+      case HomeUnloadState:
+        return HomeEnum.unload;
+      case HomeCompleteState:
+        return HomeEnum.complete;
+      default:
+        return HomeEnum.error;
+    }
+  }
+}
 
 class HomeState {
   HomeState._();
-
-  factory HomeState.loading() = HomeLoadingState;
-  factory HomeState.unload() = HomeUnloadState;
-  factory HomeState.complete(Image image) = HomeCompleteState;
-  factory HomeState.error(String error) = HomeErrorState;
 }
 
 class HomeLoadingState extends HomeState {

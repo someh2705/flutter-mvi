@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mvi/feature/intent/home_intent.dart';
-import 'package:mvi/feature/state/home_state.dart';
 import 'package:mvi/feature/view/home_view.dart';
 
 void main() {
@@ -19,9 +17,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomeView(
-          state: (HomeUnloadState() as HomeState).obs,
-          action: HomeAction(),
-        ));
+        home: const HomeView());
   }
 }

@@ -33,25 +33,25 @@ extension HomeStateExtension on HomeState? {
 }
 
 class HomeState {
-  HomeState._();
+  HomeState();
 }
 
 class HomeLoadingState extends HomeState {
-  HomeLoadingState() : super._();
+  HomeLoadingState() : super();
 }
 
 class HomeUnloadState extends HomeState {
-  HomeUnloadState() : super._();
+  HomeUnloadState() : super();
 }
 
 class HomeErrorState extends HomeState {
-  HomeErrorState(this.error) : super._();
+  HomeErrorState(this.error) : super();
 
   final String error;
 }
 
 class HomeCompleteState extends HomeState {
-  HomeCompleteState(this.image) : super._();
+  HomeCompleteState(this.image) : super();
 
   final Image image;
 }

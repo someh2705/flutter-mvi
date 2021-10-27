@@ -5,12 +5,9 @@ import 'package:mvi/feature/intent/home_intent.dart';
 import 'package:mvi/feature/state/home_state.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key, required this.state, required this.action})
-      : super(key: key);
+  const HomeView({Key? key}) : super(key: key);
 
-  final Rx<HomeState> state;
-
-  final HomeAction action;
+  HomeAction get action => Get.find<HomeAction>();
 
   Widget render(HomeState state) {
     switch (state.to) {
@@ -33,7 +30,7 @@ class HomeView extends StatelessWidget {
     return CenterWidget(
         child: TextButton(
             onPressed: () {
-              action.onClick(state);
+              action.onClick();
             },
             child: const Text('다시 시도')));
   }
@@ -49,7 +46,12 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => render(state.value));
+    Get.put(HomeAction());
+    return GetBuilder<HomeAction>(
+      builder: (controller) {
+        return Obx(() => render(controller.state.value));
+      },
+    );
   }
 }
 

@@ -13,15 +13,16 @@ class HomeView extends StatelessWidget {
   final HomeAction action;
 
   Widget render(HomeState state) {
-    switch (state.runtimeType) {
-      case HomeLoadingState:
+    switch (state.to) {
+      case HomeEnum.loading:
         return renderLoadingState();
-      case HomeUnloadState:
+      case HomeEnum.unload:
         return renderUnloadingState();
-      case HomeCompleteState:
+      case HomeEnum.complete:
         return renderCompleteState((state as HomeCompleteState).image);
+      case HomeEnum.error:
+        return renderErrorState((state as HomeErrorState).error);
     }
-    return renderErrorState((state as HomeErrorState).error);
   }
 
   Widget renderLoadingState() {

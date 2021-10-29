@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
+class BaseState {}
+
 enum HomeEnum { loading, unload, complete, error }
 
 extension HomeEnumExtension on HomeEnum? {
@@ -32,7 +34,7 @@ extension HomeStateExtension on HomeState? {
   }
 }
 
-class HomeState {
+class HomeState extends BaseState {
   HomeState();
 }
 

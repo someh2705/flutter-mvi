@@ -4,13 +4,35 @@ import 'package:get/get.dart';
 import 'package:mvi/feature/intent/home_intent.dart';
 import 'package:mvi/feature/state/home_state.dart';
 
-class HomeView extends StatelessWidget {
+abstract class BaseView<T extends BaseAction> extends StatelessWidget {
+  const BaseView({Key? key}) : super(key: key);
+
+  T get action => Get.find<T>();
+
+  T get init;
+
+  Widget render(BaseState state);
+
+  @override
+  Widget build(BuildContext context) {
+    Get.put(init);
+    return GetBuilder<T>(
+        builder: (controller) => Obx(() => render(action.state.value)));
+  }
+}
+
+class HomeView extends BaseView<HomeAction> {
   const HomeView({Key? key}) : super(key: key);
 
+  @override
   HomeAction get action => Get.find<HomeAction>();
 
-  Widget render(HomeState state) {
-    switch (state.to) {
+  @override
+  HomeAction get init => HomeAction();
+
+  @override
+  Widget render(BaseState state) {
+    switch ((state as HomeState).to) {
       case HomeEnum.loading:
         return renderLoadingState();
       case HomeEnum.unload:
@@ -42,16 +64,6 @@ class HomeView extends StatelessWidget {
   Widget renderErrorState(String error) {
     Get.snackbar(error, '', duration: const Duration(microseconds: 1000));
     return renderUnloadingState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Get.put(HomeAction());
-    return GetBuilder<HomeAction>(
-      builder: (controller) {
-        return Obx(() => render(controller.state.value));
-      },
-    );
   }
 }
 

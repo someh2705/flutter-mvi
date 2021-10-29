@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
-class BaseState {}
+import 'package:mvi/core/model/base_model.dart';
 
 enum HomeEnum { loading, unload, complete, error }
 

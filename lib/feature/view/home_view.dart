@@ -47,7 +47,6 @@ class HomeView extends BaseView<HomeAction> {
   }
 
   Widget renderErrorState(String error) {
-    Get.snackbar(error, '', duration: const Duration(microseconds: 1000));
     return renderUnloadingState();
   }
 }

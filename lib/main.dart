@@ -17,6 +17,21 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomeView());
+        home: Scaffold(
+            appBar: AppBar(
+              title: const Text('MVI 맛보기'),
+            ),
+            body: Container(
+              width: double.infinity,
+              height: double.infinity,
+              alignment: Alignment.center,
+              child: Center(
+                child: SizedBox(
+                  width: Get.width / 2,
+                  height: Get.height / 2,
+                  child: const HomeView(),
+                ),
+              ),
+            )));
   }
 }
